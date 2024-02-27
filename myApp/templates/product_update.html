@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block main-content %}
+
+<h1>Update PRODUCT</h1>
+<form method="post" action="{% url 'product_update' pk=product.pk %}">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="{{product.name}}"><br><br>
+
+    <label for="description">Description:</label>
+    <textarea name="description">{{product.description}}</textarea><br><br>
+
+    <label for="price">Price:</label>
+    <input type="number" name="price" value="{{product.price}}"><br><br>
+
+    <label for="category">Category:</label>
+    <select name="category">
+        {% for category in categories %}
+            <option value="{{category.pk}}"  {% if product and product.category.pk == category.pk %}selected{% endif %}>{{category.name}}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label for="discount">Discount (%):</label>
+    <input type="number" name="discount" value="{{product.discount}}"><br><br>
+
+    <button type="submit">Update Product</button>
+</form><br>
+<a href="{% url 'product_list' %}">Cancle</a>
+
+{% endblock %}

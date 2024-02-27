@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block main-content %}
+
+<h1>PRODUCT DELETE</h1>
+{% if product %}
+    <p>Are you sure you want to detele "{{product.name}}"?</p>
+    <form method="post" action="{% url 'product_delete' pk=product.pk %}">
+        {% csrf_token %}
+        <button type="submit">Yes, detele</button><br><br>
+    </form>
+    <a href="{% url 'product_list' %}">No, Cancle</a>
+{% else %}
+    <p>Product Not Found</p>
+{% endif %}
+
+{% endblock %}
