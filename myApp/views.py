@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
+from django.http import JsonResponse
+from django.contrib import messages
 
 def product_list(request):
     products = Product.objects.all()
@@ -26,9 +28,12 @@ def product_add(request):
                 category=category,
                 discount=discount,
             )
+            messages.success(request, "Product Added Successfully!")
             return redirect('product_list')
     categories = Category.objects.all()
     return render(request, 'product_add.html', {'categories': categories})
+
+
 
 def product_update(request, pk):
     try:
@@ -59,7 +64,7 @@ def product_update(request, pk):
         
     categories = Category.objects.all()
     return render(request, 'product_update.html', {'product': product, 'categories': categories})
-                    
+
 
 def product_details(request, pk):
     try:
@@ -79,4 +84,5 @@ def product_delete(request, pk):
         return redirect('product_list')
     
     return render(request, 'product_delete.html', {'product': product})
+
 

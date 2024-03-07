@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% block css %}
+    {% endblock %}
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- Add Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    
 </head>
 <body>
     {% block main-content %}
     {% endblock %}
+
+    {% block js %}
+    {% endblock %}
+     <!-- Add Bootstrap JS (Popper.js and Bootstrap JS) -->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+
+     <script>
+        function products(button){
+            var url = button.getAttribute('data-url');
+    
+            if (url){
+                window.location.href = url; 
+            }else {
+                conclose.error('Invalid URL')
+            } 
+        }
+    
+        document.querySelectorAll('.btn').forEach(function(button){
+            button.addEventListener('click', function(){
+                products(this);
+            })
+        })
+
+    </script>
+
 </body>
 </html>
