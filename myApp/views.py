@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import *
 from django.http import JsonResponse
 from django.contrib import messages
@@ -60,6 +59,7 @@ def product_update(request, pk):
            product.category = category
            product.discount = discount
            product.save()
+           messages.success(request, "Product Updated Successfully!")
            return redirect('product_list')
         
     categories = Category.objects.all()
@@ -77,4 +77,3 @@ def product_delete(request, pk):
         return JsonResponse({'message': 'Product deleted successfully'})
 
     return JsonResponse({'message': 'Invalid request'})
-
